@@ -11,6 +11,7 @@
 #define MESH_PREFIX "whateverYouLike"
 #define MESH_PASSWORD "somethingSneaky"
 #define MESH_PORT 5555
+#define CHANNEL 6
 
 Scheduler userScheduler; // to control your personal task
 painlessMesh mesh;
@@ -22,8 +23,8 @@ Task taskSendMessage(TASK_SECOND * 1, TASK_FOREVER, &sendMessage);
 
 void sendMessage()
 {
-  String msg = "Hello from node ";
-  msg += mesh.getNodeId();
+  String msg = "{'nome':'joao', 'idade':24}";
+  // msg += mesh.getNodeId();
   mesh.sendBroadcast(msg);
   taskSendMessage.setInterval(random(TASK_SECOND * 1, TASK_SECOND * 5));
 }
